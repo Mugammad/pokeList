@@ -1,0 +1,28 @@
+#output{
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;
+    box-sizing: border-box;
+
+}
+
+#pokeList{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+
+#pokeList::-webkit-scrollbar {
+    display: none;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+.btn{
+    border-radius: 0;
+}
