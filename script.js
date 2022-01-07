@@ -1,13 +1,26 @@
-fetch("https://pokeapi.co/api/v2/pokemon")
+let pokelist = "https://pokeapi.co/api/v2/pokemon";
+
+getPokeList(pokelist)
+
+function getPokeList(link){
+    fetch(link)
     .then((resultes) => resultes.json())
     .then((pokemon) => {
         console.log(pokemon);
+        document.querySelector("#pokeList").innerHTML = ""
         pokemon.results.forEach(species => {
             document.querySelector("#pokeList").innerHTML += `
                 <button class="btn btn-danger" onclick="getPokemon('${species.url}')">${species.name}</button>
             `
         });
+        document.querySelector("#pokeList").innerHTML += `
+            <button class="btn btn-danger" onclick="getPokeList('${pokemon.previous}')">PREVIOUS</button>
+            <button class="btn btn-danger" onclick="getPokeList('${pokemon.next}')">NEXT</button>
+        `
+        
     });
+}
+
 
 function getPokemon(url){
     fetch(url)
