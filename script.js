@@ -32,13 +32,17 @@ function getPokemon(url){
             </div>
             
         `
+        document.getElementById("stats").innerHTML = ''
         data.stats.forEach(element => {
-            document.getElementById("output").innerHTML += `
-                <div class="text-center">
-                    <p>${element.stat.name}: ${element.base_stat}</p>
+            document.getElementById("stats").innerHTML += `
+                <div class="text-center col-6">
+                    <p><b>${element.stat.name}:</b> ${element.base_stat}</p>
                 </div>
             `
         });
+    }).catch(error => {
+        console.log(error)
+        alert("no pokemon by that name")
     });
 }
 
@@ -64,12 +68,27 @@ fetch("https://pokeapi.co/api/v2/pokemon/charizard")
             </div>
             
         `
+
+        document.getElementById("stats").innerHTML = ''
         data.stats.forEach(element => {
-            document.getElementById("output").innerHTML += `
-                <div class="text-center">
-                    <p>${element.stat.name}: ${element.base_stat}</p>
+            document.getElementById("stats").innerHTML += `
+                <div class="text-center col-6">
+                    <p><b>${element.stat.name}:</b> ${element.base_stat}</p>
                 </div>
             `
         });
     });
+
+function findPokemon(){
+    const name = document.querySelector("#pokeFinder").value.toLowerCase()
+
+    let url = `https://pokeapi.co/api/v2/pokemon/${ name }`
+
+    try{
+        if(name == '') throw "You didn't type anything";
+        getPokemon(url)
+    }catch(err){
+        alert(err)
+    }
     
+}
